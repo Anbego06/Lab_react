@@ -106,3 +106,45 @@ body {
   background-color: #eff6ff;
   border-color: #2563eb;
 }
+
+/* Estilos limpios para la Tarea formativa 07 */
+.task-list-toggle-btn {
+  margin-bottom: 15px;
+}
+
+.task-detail-box {
+  font-size: 0.95rem;
+  color: #334155;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+}
+
+.task-list-clean {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-text {
+  color: #1e293b;
+}
+
+.task-text-completed {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+.task-badge-success {
+  color: #16a34a;
+  font-weight: bold;
+  font-size: 0.9rem;
+}

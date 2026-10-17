@@ -1,23 +1,54 @@
-import './App.css'
-import Header from './components/Header'
-import TaskSummary from './components/TaskSummary'
-import TaskList from './components/TaskList'
-import ActionButton from './components/ActionButton'
+import { useState } from 'react';
+import './App.css';
+import Header from './components/Header';
+import TaskSummary from './components/TaskSummary';
+import TaskList from './components/TaskList';
+import ActionButton from './components/ActionButton';
 
-function App() {
-  function reviewTasks() {
-    alert('Tienes 3 tareas pendientes por revisar')
-  }
+const App = () => {
+  // 1. Añadimos el estado para el nombre del usuario (Tarea formativa)
+  const [nombreUsuario, setNombreUsuario] = useState("Estudiante");
+
+  const [tareas, setTareas] = useState([
+    { id: 1, titulo: "Aprender qué es React", completada: false },
+    { id: 2, titulo: "Crear proyecto con Vite", completada: true },
+    { id: 3, titulo: "Practicar JSX", completada: false },
+  ]);
+
+  const completarTarea = (id) => {
+    setTareas(
+      tareas.map((tarea) =>
+        tarea.id === id
+          ? { ...tarea, completada: true }
+          : tarea
+      )
+    );
+  };
+
+  // 2. Función para cambiar el nombre a "Estudiante Anónimo"
+  const hacerAnonimo = () => {
+    setNombreUsuario("Estudiante Anónimo");
+  };
+
   return (
-    <main className="app-container">
-      <Header
-        title="TaskCampus"
-        description="Gestor de tareas académicas"
+    <div className="app-container">
+      {/* 3. Actualizamos la descripción del Header para que use el estado */}
+      <Header 
+        title="TaskCampus" 
+        description={`Bienvenido, ${nombreUsuario} - Gestor de tareas académicas`} 
       />
-      <TaskSummary total={3} />
-      <TaskList title="Listado de tareas de hoy" />
-      <ActionButton onReview={reviewTasks} />
-    </main>
-  )
-}
-export default App
+
+      {/* 4. Botón de la tarea formativa para cambiar el nombre */}
+      <div style={{ textAlign: "right", marginBottom: "15px" }}>
+        <button onClick={hacerAnonimo} className="task-button-secondary">
+          Cambiar a Anónimo
+        </button>
+      </div>
+
+      <TaskSummary total={tareas.length} />
+      <TaskList tareas={tareas} onCompletar={completarTarea} />
+    </div>
+  );
+};
+
+export default App;
