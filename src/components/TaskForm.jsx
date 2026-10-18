@@ -1,41 +1,54 @@
 import { useState } from "react";
+// Tutorial 10: usamos el componente reutilizable Button en lugar de <button>
+import Button from "./Button";
 
-const TaskForm = ({ onAgregar }) => {
-    const [titulo, setTitulo] = useState("");
-    const [error, setError] = useState("");
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (titulo.trim() === "") {
-            setError("El título de la tarea no puede estar vacío.");
-            return;
-        }
+// TaskForm recibe onAgregar desde App.jsx; se ejecuta cuando el usuario envía
+// una tarea válida. `guardando` deshabilita el formulario durante el POST.
+const TaskForm = ({ onAgregar, guardando = false }) => {
+  // Input controlado: su valor SIEMPRE refleja este estado
+  const [titulo, setTitulo] = useState("");
+  const [error, setError] = useState("");
 
-        onAgregar(titulo.trim());
+  const handleSubmit = async (e) => {
+    // Evita que el formulario recargue la página
+    e.preventDefault();
 
-        setTitulo("");
+    // Tutorial 12: validación más estricta (al menos 3 caracteres útiles)
+    if (titulo.trim().length < 3) {
+      setError("El título debe tener al menos 3 caracteres.");
+      return;
+    }
 
-        setError("");
-    };
+    // onAgregar devuelve true si el POST fue exitoso: solo entonces se limpia el campo
+    const ok = await onAgregar(titulo.trim());
+    if (ok) {
+      setTitulo("");
+      setError("");
+    }
+  };
 
-    return (
+  return (
+    <div className="card">
+      <h2 className="section-title">Agregar Nueva Tarea</h2>
+      <form onSubmit={handleSubmit} className="task-form">
+        <input
+          type="text"
+          value={titulo}
+          onChange={(e) => {
+            setTitulo(e.target.value);
+            setError("");
+          }}
+          placeholder="Escribe el título de la tarea..."
+          className="task-input"
+          disabled={guardando}
+        />
+        <Button label="Agregar" variant="primary" disabled={guardando} />
+      </form>
 
-        <form onSubmit={handleSubmit} className="card">
-
-            <h2 className="section-title">Agregar Nueva Tarea</h2>
-            <div style={{ display: "flex", gap: "8px", marginBottom: "8px"}}>
-                <input
-                    type="text"
-                    value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
-                    placeholder="Ej: Estudiar para prueba de Física"
-                    style={{ flex: 1, padding: "8px", borderRadius: "6px", border: "1px solid #cbd5e1"}}
-                />
-                <button type="submit" className="task-button">Agregar</button>    
-            </div>
-
-            {error && <p style={{ color :"red", fontSize: "0.875rem"}}>{error}</p>}
-        </form>
-    );
+      {/* Renderizado condicional: el mensaje solo aparece si hay error */}
+      {error && <p className="form-error">{error}</p>}
+    </div>
+  );
 };
 
 export default TaskForm;
