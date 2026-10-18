@@ -8,7 +8,7 @@ Aplicación de gestión de tareas académicas construida progresivamente a lo la
 
 ---
 
-## ✨ Características
+## Características
 
 - **CRUD completo** — Crear, leer, actualizar y eliminar tareas
 - **Comunicación con API REST** — Consume [JSONPlaceholder](https://jsonplaceholder.typicode.com/) con `fetch` y `async/await`
