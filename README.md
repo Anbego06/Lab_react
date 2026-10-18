@@ -69,7 +69,7 @@ tareasService.js  →  useTareas.js (hook)  →  App.jsx (coordinación)  →  C
 
 ---
 
-## 🚀 Instalación y Uso
+## Instalación y Uso
 
 ### Requisitos previos
 
@@ -210,7 +210,7 @@ El proyecto se construyó de manera incremental. Cada tutorial agrega nuevos con
 
 ---
 
-## 📡 API
+## API
 
 Este proyecto consume la API pública [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
 
