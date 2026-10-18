@@ -199,7 +199,8 @@ El proyecto se construyó de manera incremental. Cada tutorial agrega nuevos con
 
 ---
 
-## 🛠️ Scripts Disponibles
+## 
+Scripts Disponibles
 
 | Comando | Descripción |
 |---|---|
