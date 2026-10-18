@@ -102,7 +102,7 @@ npm run dev -- --host
 
 ---
 
-## 🎓 Progresión de Tutoriales (1 – 12)
+## Progresión de Tutoriales (1 – 12)
 
 El proyecto se construyó de manera incremental. Cada tutorial agrega nuevos conceptos sobre el anterior:
 
